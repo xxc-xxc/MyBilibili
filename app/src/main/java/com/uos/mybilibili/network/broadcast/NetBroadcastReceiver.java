@@ -1,4 +1,4 @@
-package com.uos.mybilibili.broadcast;
+package com.uos.mybilibili.network.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

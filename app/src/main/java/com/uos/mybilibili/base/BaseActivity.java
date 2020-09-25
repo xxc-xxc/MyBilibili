@@ -22,7 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.uos.mybilibili.broadcast.NetBroadcastReceiver;
+import com.uos.mybilibili.MyApplication;
+import com.uos.mybilibili.network.broadcast.NetBroadcastReceiver;
+import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
+import com.uos.mybilibili.network.lib.NetworkListener;
 import com.uos.mybilibili.utils.ActivitiesManager;
 
 /**
@@ -31,7 +34,7 @@ import com.uos.mybilibili.utils.ActivitiesManager;
  * Desc:
  */
 public abstract class BaseActivity extends AppCompatActivity
-        implements NetBroadcastReceiver.NetChangeListener {
+        implements NetBroadcastReceiver.NetChangeListener, NetworkStateReceiver.NetworkChangeListener {
 
     protected final String TAG = this.getClass().getSimpleName();
     public static NetBroadcastReceiver.NetChangeListener netEvent;// 网络状态改变监听事件
@@ -41,11 +44,9 @@ public abstract class BaseActivity extends AppCompatActivity
     private boolean isShowTitle;
     // 是否显示ActionBar
     private boolean isShowActionBar;
-    //是否显示状态栏
-    private boolean isShowStatusBar;
     //是否允许旋转屏幕
     private boolean isAllowScreenRotate;
-    private NetBroadcastReceiver mNetBroadcastReceiver;
+//    private NetBroadcastReceiver mNetBroadcastReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,11 +61,6 @@ public abstract class BaseActivity extends AppCompatActivity
         if (getSupportActionBar() != null && !isShowActionBar) {
             getSupportActionBar().hide();
         }
-        if (!isShowStatusBar) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -87,10 +83,12 @@ public abstract class BaseActivity extends AppCompatActivity
         // 初始化数据
         initData();
         // 动态注册网络变化广播
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        mNetBroadcastReceiver = new NetBroadcastReceiver();
-        registerReceiver(mNetBroadcastReceiver, intentFilter);
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+//        mNetBroadcastReceiver = new NetBroadcastReceiver();
+//        registerReceiver(mNetBroadcastReceiver, intentFilter);
+//        NetworkListener.getInstance().registerObserver(this);
+        ((MyApplication)getApplication()).setNetworkChangeListener(this);
     }
 
     /**
@@ -113,8 +111,8 @@ public abstract class BaseActivity extends AppCompatActivity
         isShowTitle = showTitle;
     }
 
-    public void setShowStatusBar(boolean showStatusBar) {
-        isShowStatusBar = showStatusBar;
+    public void setShowActionBar(boolean showActionBar) {
+        isShowActionBar = showActionBar;
     }
 
     public void setAllowScreenRotate(boolean allowScreenRotate) {
@@ -186,7 +184,9 @@ public abstract class BaseActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         ActivitiesManager.removeActivity(this);
-        unregisterReceiver(mNetBroadcastReceiver);
+//        unregisterReceiver(mNetBroadcastReceiver);
+//        NetworkListener.getInstance().unRegisterObserver(this);
+        ((MyApplication)getApplication()).setNetworkChangeListener(this);
     }
 
     @Override
@@ -251,6 +251,11 @@ public abstract class BaseActivity extends AppCompatActivity
      */
     @Override
     public void onNetChange(boolean netWorkState) {
+    }
+
+    @Override
+    public void onNetworkChange(String msg) {
+//        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
     /**
