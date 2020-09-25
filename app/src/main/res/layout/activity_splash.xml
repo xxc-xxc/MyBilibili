@@ -11,12 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <TextView
-        android:id="@+id/tv_skip_ad"
+    <LinearLayout
+        android:id="@+id/ll_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="跳过"
-        android:textSize="16sp"
-        android:textColor="@android:color/white"/>
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:padding="@dimen/dp_6"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_count_down"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:id="@+id/tv_skip_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳过"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@android:color/white"/>
+        <TextView
+            android:id="@+id/tv_countdown_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/pink"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
