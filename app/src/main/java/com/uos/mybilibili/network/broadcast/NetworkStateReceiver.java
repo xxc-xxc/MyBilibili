@@ -50,8 +50,8 @@ public class NetworkStateReceiver extends BroadcastReceiver {
         } else {
             StringBuilder sb = new StringBuilder();
             Network[] allNetworks = connectivityManager.getAllNetworks();
-            for (int i = 0; i < allNetworks.length; i++) {
-                NetworkInfo networkInfo = connectivityManager.getNetworkInfo(allNetworks[i]);
+            for (Network allNetwork : allNetworks) {
+                NetworkInfo networkInfo = connectivityManager.getNetworkInfo(allNetwork);
                 if (networkInfo != null) {
                     sb.append(networkInfo.getTypeName()).append(" connect is ").append(networkInfo.isConnected());
                 }
@@ -60,7 +60,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
             if (msg.equals("")) {
                 msg = "网络已断开";
             }
-//            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         }
         if (mNetworkChangeListener != null) {
             mNetworkChangeListener.onNetworkChange(msg);

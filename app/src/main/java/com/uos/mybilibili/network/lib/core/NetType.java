@@ -10,9 +10,9 @@ public enum NetType {
     AUTO,
     //WIFI
     WIFI,
-    CMNET,
     //手机上网
     CMWAP,
+    CMNET,
     //无网络
     NONE
 }

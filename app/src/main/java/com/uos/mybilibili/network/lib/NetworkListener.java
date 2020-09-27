@@ -7,7 +7,7 @@ import android.net.NetworkRequest;
 import android.os.Build;
 
 import com.uos.mybilibili.network.lib.netcallback.NetworkCallbackImpl;
-import com.uos.mybilibili.network.lib.receiver.NetworkStateReceiverWithAnno;
+import com.uos.mybilibili.network.lib.receiver.NetworkStateReceiverWithAnnotation;
 import com.uos.mybilibili.network.lib.template.SingletonTemplate;
 import com.uos.mybilibili.utils.Constants;
 
@@ -18,7 +18,7 @@ import com.uos.mybilibili.utils.Constants;
 public class NetworkListener {
     private Context context;
     private NetworkCallbackImpl networkCallback;
-    private NetworkStateReceiverWithAnno receiver;
+    private NetworkStateReceiverWithAnnotation receiver;
 
     /**
      * 私有化构造方法
@@ -58,7 +58,7 @@ public class NetworkListener {
             }
         } else {
             //5.0以下继续使用广播
-            receiver = new NetworkStateReceiverWithAnno();
+            receiver = new NetworkStateReceiverWithAnnotation();
             IntentFilter filter = new IntentFilter();
             filter.addAction(Constants.ANDROID_NET_CHANGE_ACTION);
         }

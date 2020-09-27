@@ -27,12 +27,12 @@ import java.util.Set;
  * Created by ywd on 2019/6/12.
  */
 
-public class NetworkStateReceiverWithAnno extends BroadcastReceiver {
-    private static final String TAG = "NetStateWithAnno";
+public class NetworkStateReceiverWithAnnotation extends BroadcastReceiver {
+    private static final String TAG = NetworkStateReceiverWithAnnotation.class.getSimpleName();
     private NetType netType;
     private Map<Object, List<MethodManager>> networkMap;
 
-    public NetworkStateReceiverWithAnno() {
+    public NetworkStateReceiverWithAnnotation() {
         //初始化网络连接状态
         netType = NetType.NONE;
         networkMap = new HashMap<>();

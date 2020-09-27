@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 自定义网络状态注解
- * Created by ywd on 2019/6/10.
+ * Created xxc
  */
 
 @Target(ElementType.METHOD)//作用在方法之上
