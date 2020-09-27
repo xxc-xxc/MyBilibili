@@ -8,7 +8,7 @@ import android.util.Log;
 import com.uos.mybilibili.network.lib.core.NetChangeListener;
 import com.uos.mybilibili.network.lib.core.NetType;
 import com.uos.mybilibili.utils.Constants;
-import com.uos.mybilibili.utils.NetworkUtils;
+import com.uos.mybilibili.utils.NetworkUtil2;
 
 /**
  * 广播接收-使用接口回调形式
@@ -37,8 +37,8 @@ public class NetworkStateReceiver extends BroadcastReceiver {
         }
         if (intent.getAction().equals(Constants.ANDROID_NET_CHANGE_ACTION)) {
             Log.d(TAG, "onReceive: 网络发生变化");
-            netType = NetworkUtils.getNetType();
-            if (NetworkUtils.isNetworkAvailable()) {
+            netType = NetworkUtil2.getNetType();
+            if (NetworkUtil2.isNetworkAvailable()) {
                 Log.d(TAG, "onReceive: 网络连接成功");
                 if (listener != null) {
                     listener.onConnect(netType);

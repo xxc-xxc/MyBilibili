@@ -13,6 +13,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -32,6 +33,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.android.support:multidex:1.0.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -41,4 +43,38 @@ dependencies {
     // 控件绑定
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    // 依赖注入
+    implementation 'com.google.dagger:dagger:2.29.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.29.1'
+    implementation 'com.google.dagger:dagger-android:2.29.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.29.1'
+    // 控件事件绑定
+    implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-appcompat:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-drawerlayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-leanback:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-recyclerview:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-slidingpanelayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-viewpager2:4.0.0'
+    implementation 'com.jakewharton.rxbinding4:rxbinding-material:4.0.0'
+    // RxJava绑定声明周期
+    implementation 'com.trello.rxlifecycle4:rxlifecycle:4.0.0'
+    implementation 'com.trello.rxlifecycle4:rxlifecycle-android:4.0.0'
+    implementation 'com.trello.rxlifecycle4:rxlifecycle-components:4.0.0'
+    implementation 'com.trello.rxlifecycle4:rxlifecycle-components-preference:4.0.0'
+    implementation 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle:4.0.0'
+    // 网络请求
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    // 调试工具
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    // 动态请求权限
+    implementation 'com.github.tbruyelle:rxpermissions:0.12'
 }

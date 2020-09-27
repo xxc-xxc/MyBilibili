@@ -10,7 +10,7 @@ import android.text.TextUtils;
  *
  * create by xxc
  */
-public class NetworkUtil {
+public class NetworkUtil1 {
     public static final int NETTYPE_WIFI = 0x01;
     public static final int NETTYPE_CMWAP = 0x02;
     public static final int NETTYPE_CMNET = 0x03;

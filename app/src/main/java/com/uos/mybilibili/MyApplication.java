@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
+import com.facebook.stetho.Stetho;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
 import com.uos.mybilibili.network.lib.NetworkListener;
+import com.uos.mybilibili.utils.AppUtils;
 
 /**
  * Create By xxc
@@ -19,14 +21,27 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppUtils.init(this);
 //        NetworkListener.getInstance().init(this);
         registerReceiver();
+        initStetho();
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
         unregisterReceiver();
+    }
+
+    /**
+     * 初始化调试
+     */
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 
     private void registerReceiver() {

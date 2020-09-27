@@ -22,18 +22,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 import com.uos.mybilibili.MyApplication;
 import com.uos.mybilibili.network.broadcast.NetBroadcastReceiver;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
 import com.uos.mybilibili.network.lib.NetworkListener;
 import com.uos.mybilibili.utils.ActivitiesManager;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Create By xxc
  * Date: 2020/9/25 11:09
  * Desc:
  */
-public abstract class BaseActivity extends AppCompatActivity
+public abstract class BaseActivity extends RxAppCompatActivity
         implements NetBroadcastReceiver.NetChangeListener, NetworkStateReceiver.NetworkChangeListener {
 
     protected final String TAG = this.getClass().getSimpleName();
@@ -46,7 +50,8 @@ public abstract class BaseActivity extends AppCompatActivity
     private boolean isShowActionBar;
     //是否允许旋转屏幕
     private boolean isAllowScreenRotate;
-//    private NetBroadcastReceiver mNetBroadcastReceiver;
+    private Unbinder mUnbinder;
+    //    private NetBroadcastReceiver mNetBroadcastReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
         // 设置布局
         setContentView(initLayout());
+        mUnbinder = ButterKnife.bind(this);
 
         // 设置横竖屏
         if (isAllowScreenRotate) {
@@ -183,6 +189,7 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mUnbinder.unbind();
         ActivitiesManager.removeActivity(this);
 //        unregisterReceiver(mNetBroadcastReceiver);
 //        NetworkListener.getInstance().unRegisterObserver(this);

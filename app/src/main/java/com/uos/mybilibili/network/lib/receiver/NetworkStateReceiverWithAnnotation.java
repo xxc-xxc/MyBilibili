@@ -13,7 +13,7 @@ import com.uos.mybilibili.network.lib.core.MethodManager;
 import com.uos.mybilibili.network.lib.core.NetType;
 import com.uos.mybilibili.network.lib.core.Network;
 import com.uos.mybilibili.utils.Constants;
-import com.uos.mybilibili.utils.NetworkUtils;
+import com.uos.mybilibili.utils.NetworkUtil2;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -47,8 +47,8 @@ public class NetworkStateReceiverWithAnnotation extends BroadcastReceiver {
         }
         if (intent.getAction().equals(Constants.ANDROID_NET_CHANGE_ACTION)) {
             Log.d(TAG, "onReceive: 网络发生变化");
-            netType = NetworkUtils.getNetType();
-            if (NetworkUtils.isNetworkAvailable()) {
+            netType = NetworkUtil2.getNetType();
+            if (NetworkUtil2.isNetworkAvailable()) {
                 Log.d(TAG, "onReceive: 网络连接成功");
             } else {
                 Log.e(TAG, "onReceive: 网络连接失败");
