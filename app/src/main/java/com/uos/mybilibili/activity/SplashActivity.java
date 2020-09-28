@@ -7,19 +7,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jakewharton.rxbinding4.view.RxView;
+import com.uos.mybilibili.MyApplication;
 import com.uos.mybilibili.R;
 import com.uos.mybilibili.base.BaseActivity;
+import com.uos.mybilibili.bean.Splash;
+import com.uos.mybilibili.di.component.DaggerActivityComponent;
+import com.uos.mybilibili.di.module.ActivityModule;
+import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.mvp.presenter.SplashPresenter;
 import com.uos.mybilibili.network.lib.core.NetType;
 import com.uos.mybilibili.network.lib.core.Network;
 import com.uos.mybilibili.utils.StatusBarUtil;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Author: XXC
@@ -57,7 +66,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     TextView tvCountdownTime;
     @BindView(R.id.ll_countdown)
     LinearLayout llCountdown;
-    private SplashPresenter mPresenter;
+    @Inject
+    SplashPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +76,25 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         StatusBarUtil.setTransparent(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        mPresenter = new SplashPresenter(this);
-        mPresenter.attachView(this);
+        initInject();
+        loadData();
+    }
+
+    private void loadData() {
+        mPresenter.getSplash();
         mPresenter.setCountdown();
+    }
+
+    /**
+     * 依赖注入
+     */
+    private void initInject() {
+        DaggerActivityComponent.builder()
+                .appComponent(MyApplication.getInstance().getAppComponent())
+                .activityModule(new ActivityModule(this))
+                .build()
+                .inject(this);
+        mPresenter.attachView(this);
     }
 
     @Override
@@ -135,8 +161,23 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     }
 
     @Override
-    public void showError(String msg) {
+    public void showSplash(Splash splash) {
+        if (!splash.data.isEmpty()) {
+            int index = new Random().nextInt(splash.data.size());
+            Glide.with(this)
+                    .load(splash.data.get(index).thumb)
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .into(ivSplashPoster);
+        } else {
+            ivSplashPoster.setImageResource(R.drawable.ic_default_bg);
+        }
+    }
 
+    @Override
+    public void showError(String msg) {
+        ivSplashPoster.setImageResource(R.drawable.ic_default_bg);
     }
 
     @Override

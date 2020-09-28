@@ -18,10 +18,12 @@ public interface SplashContract {
 
     interface View extends BaseContract.BaseView {
         void showCountdown(int count);
+        void showSplash(Splash splash);
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
         void setCountdown();
+        void getSplash();
     }
 
 }

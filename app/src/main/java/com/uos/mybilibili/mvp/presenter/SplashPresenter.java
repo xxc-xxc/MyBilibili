@@ -2,13 +2,18 @@ package com.uos.mybilibili.mvp.presenter;
 
 import android.content.Context;
 
+import com.uos.mybilibili.base.BaseSubscriber;
 import com.uos.mybilibili.base.RxPresenter;
+import com.uos.mybilibili.bean.Splash;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.mvp.model.SplashModel;
 import com.uos.mybilibili.utils.RxUtils;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -22,6 +27,7 @@ public class SplashPresenter extends RxPresenter<SplashContract.View> implements
     private Context mContext;
     private SplashContract.Model mModel;
 
+    @Inject
     public SplashPresenter(Context context) {
         mContext = context;
         mModel = new SplashModel();
@@ -36,5 +42,25 @@ public class SplashPresenter extends RxPresenter<SplashContract.View> implements
                 .compose(RxUtils.rxSchedulerHelper())
                 .subscribe(aLong -> mView.showCountdown(aLong.intValue()));
         addSubscribe(subscribe);
+    }
+
+    @Override
+    public void getSplash() {
+        @NonNull Disposable disposable = mModel.getSplash()
+                .compose(RxUtils.rxSchedulerHelper())
+                .subscribeWith(new BaseSubscriber<Splash>(mView) {
+                    @Override
+                    public void onSuccess(Splash splash) {
+                        if (splash.code == 0) {
+                            mView.showSplash(splash);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int code, String message) {
+                        super.onFailure(code, message);
+                    }
+                });
+        addSubscribe(disposable);
     }
 }

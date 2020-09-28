@@ -5,6 +5,9 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 
 import com.facebook.stetho.Stetho;
+import com.uos.mybilibili.di.component.AppComponent;
+import com.uos.mybilibili.di.component.DaggerAppComponent;
+import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
 import com.uos.mybilibili.network.lib.NetworkListener;
 import com.uos.mybilibili.utils.AppUtils;
@@ -16,21 +19,42 @@ import com.uos.mybilibili.utils.AppUtils;
  */
 public class MyApplication extends Application {
 
+    private static MyApplication mContext;
     private NetworkStateReceiver mNetworkStateReceiver;
+    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
         AppUtils.init(this);
 //        NetworkListener.getInstance().init(this);
         registerReceiver();
         initStetho();
+        initComponent();
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
         unregisterReceiver();
+    }
+
+    public static MyApplication getInstance() {
+        return mContext;
+    }
+
+    /**
+     * 初始化APP与API模块组件
+     */
+    private void initComponent() {
+        mAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+    }
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 
     /**

@@ -15,8 +15,8 @@
         android:id="@+id/ll_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_8"
-        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
         android:padding="@dimen/dp_6"
         android:orientation="horizontal"
         android:background="@drawable/shape_count_down"
@@ -26,6 +26,8 @@
             android:id="@+id/tv_skip_ad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp_8"
+            android:gravity="center_vertical"
             android:text="跳过"
             android:textSize="@dimen/sp_16"
             android:textColor="@android:color/white"/>
@@ -33,7 +35,9 @@
             android:id="@+id/tv_countdown_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_8"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_8"
             android:textSize="@dimen/sp_16"
             android:textColor="@color/pink"/>
     </LinearLayout>
