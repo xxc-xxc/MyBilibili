@@ -2,7 +2,9 @@ package com.uos.mybilibili.di.component;
 
 import android.content.Context;
 
+import com.uos.mybilibili.di.module.ApiModule;
 import com.uos.mybilibili.di.module.AppModule;
+import com.uos.mybilibili.network.api.AppService;
 
 import javax.inject.Singleton;
 
@@ -14,7 +16,9 @@ import dagger.Component;
  * Desc:
  */
 @Singleton
-@Component(modules = {AppModule.class})
+@Component(modules = {AppModule.class, ApiModule.class})
 public interface AppComponent {
     Context getContext();
+
+    AppService getAppService();
 }

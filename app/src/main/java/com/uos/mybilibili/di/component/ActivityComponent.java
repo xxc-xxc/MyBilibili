@@ -20,5 +20,4 @@ public interface ActivityComponent {
     Activity getActivity();
 
     void inject(SplashActivity splashActivity);
-
 }

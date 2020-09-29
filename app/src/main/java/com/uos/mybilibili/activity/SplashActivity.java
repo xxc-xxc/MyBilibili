@@ -16,9 +16,11 @@ import com.uos.mybilibili.base.BaseActivity;
 import com.uos.mybilibili.bean.Splash;
 import com.uos.mybilibili.di.component.DaggerActivityComponent;
 import com.uos.mybilibili.di.module.ActivityModule;
+import com.uos.mybilibili.di.module.ApiModule;
 import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.mvp.presenter.SplashPresenter;
+import com.uos.mybilibili.network.api.AppService;
 import com.uos.mybilibili.network.lib.core.NetType;
 import com.uos.mybilibili.network.lib.core.Network;
 import com.uos.mybilibili.utils.StatusBarUtil;
@@ -92,6 +94,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         DaggerActivityComponent.builder()
                 .appComponent(MyApplication.getInstance().getAppComponent())
                 .activityModule(new ActivityModule(this))
+//                .apiModule(new ApiModule())
                 .build()
                 .inject(this);
         mPresenter.attachView(this);

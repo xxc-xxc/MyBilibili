@@ -60,7 +60,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
             if (msg.equals("")) {
                 msg = "网络已断开";
             }
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         }
         if (mNetworkChangeListener != null) {
             mNetworkChangeListener.onNetworkChange(msg);

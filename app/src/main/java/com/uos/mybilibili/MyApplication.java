@@ -7,9 +7,9 @@ import android.net.ConnectivityManager;
 import com.facebook.stetho.Stetho;
 import com.uos.mybilibili.di.component.AppComponent;
 import com.uos.mybilibili.di.component.DaggerAppComponent;
+import com.uos.mybilibili.di.module.ApiModule;
 import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
-import com.uos.mybilibili.network.lib.NetworkListener;
 import com.uos.mybilibili.utils.AppUtils;
 
 /**
@@ -49,6 +49,7 @@ public class MyApplication extends Application {
      */
     private void initComponent() {
         mAppComponent = DaggerAppComponent.builder()
+                .apiModule(new ApiModule())
                 .appModule(new AppModule(this))
                 .build();
     }
