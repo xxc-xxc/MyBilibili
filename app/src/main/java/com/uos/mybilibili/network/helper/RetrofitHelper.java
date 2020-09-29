@@ -3,6 +3,8 @@ package com.uos.mybilibili.network.helper;
 import com.uos.mybilibili.network.api.AppService;
 import com.uos.mybilibili.utils.ApiConstants;
 
+import org.jetbrains.annotations.NotNull;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,9 +18,7 @@ public class RetrofitHelper {
 
     private static volatile RetrofitHelper instance;
     private volatile AppService mAppService;
-
-    private RetrofitHelper() {
-    }
+    private Retrofit.Builder mBuilder;
 
     public static RetrofitHelper getInstance() {
         if (instance == null) {
@@ -33,11 +33,7 @@ public class RetrofitHelper {
     }
 
     public AppService getAppService() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(OkHttpHelper.getInstance().getOkHttpClient())
-                .baseUrl(ApiConstants.APP_BASE_URL)
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+        Retrofit retrofit = getRetrofitBuilder(ApiConstants.APP_BASE_URL)
                 .build();
         if (mAppService == null) {
             synchronized (RetrofitHelper.class) {
@@ -47,6 +43,22 @@ public class RetrofitHelper {
             }
         }
         return mAppService;
+    }
+
+    @NotNull
+    private Retrofit.Builder getRetrofitBuilder(String url) {
+        if (mBuilder == null) {
+            synchronized (RetrofitHelper.class) {
+                if (mBuilder == null) {
+                    mBuilder = new Retrofit.Builder()
+                            .client(OkHttpHelper.getInstance().getOkHttpClient())
+                            .baseUrl(url)
+                            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create());
+                }
+            }
+        }
+        return mBuilder;
     }
 
 }

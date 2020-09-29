@@ -25,12 +25,13 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class SplashPresenter extends RxPresenter<SplashContract.View> implements SplashContract.Presenter<SplashContract.View> {
 
     private Context mContext;
-    private SplashContract.Model mModel;
+    @Inject
+    SplashModel mModel;
 
     @Inject
     public SplashPresenter(Context context) {
         mContext = context;
-        mModel = new SplashModel();
+//        mModel = new SplashModel();
     }
 
     @Override

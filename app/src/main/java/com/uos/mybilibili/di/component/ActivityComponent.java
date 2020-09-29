@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.uos.mybilibili.activity.SplashActivity;
 import com.uos.mybilibili.di.module.ActivityModule;
-import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.di.scope.ActivityScope;
 
 import dagger.Component;

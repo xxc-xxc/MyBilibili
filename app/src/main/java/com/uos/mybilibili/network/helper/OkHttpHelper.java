@@ -114,8 +114,6 @@ public class OkHttpHelper {
         return cache;
     }
 
-
-
     // 云端响应头拦截器，用来配置缓存策略
     private Interceptor mRewriteCacheControlInterceptor = chain -> {
         Request request = chain.request();
