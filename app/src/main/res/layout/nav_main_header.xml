@@ -1,10 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_200"
     android:background="@color/colorPrimary">
 
+    <com.uos.mybilibili.widget.CircleImageView
+        android:id="@+id/iv_header_img"
+        android:layout_width="@dimen/dp_74"
+        android:layout_height="@dimen/dp_74"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_24"
+        android:src="@drawable/ic_user_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:border_color="@android:color/white"/>
 
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:gravity="center"
+        android:text="xxc"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_18"
+        app:layout_constraintTop_toBottomOf="@id/iv_header_img"
+        app:layout_constraintStart_toStartOf="@id/iv_header_img"/>
+
+    <TextView
+        android:id="@+id/tv_vip_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_6"
+        android:gravity="center"
+        android:text="LV6"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_13"
+        android:background="@drawable/shape_white_border"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_user_name"
+        app:layout_constraintTop_toTopOf="@id/tv_user_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_user_name"
+        app:layout_constraintStart_toEndOf="@id/tv_user_name"/>
+
+    <TextView
+        android:id="@+id/tv_vip_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/round_pink_white_bg"
+        android:text="普通会员"
+        android:textColor="@color/nav_head_roung_text_background"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintStart_toStartOf="@id/tv_user_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_name"/>
+
+    <TextView
+        android:id="@+id/tv_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="硬币:10"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintStart_toStartOf="@id/tv_vip_state"
+        app:layout_constraintTop_toBottomOf="@id/tv_vip_state"/>
+
+    <TextView
+        android:id="@+id/tv_b_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        android:text="B币:10"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintTop_toTopOf="@id/tv_coins"
+        app:layout_constraintStart_toEndOf="@id/tv_coins"/>
+
+    <ImageView
+        android:id="@+id/iv_head_notify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_24"
+        android:src="@drawable/ic_navigation_header_notification"
+        app:layout_constraintTop_toTopOf="@id/iv_header_img"
+        app:layout_constraintEnd_toStartOf="@id/iv_head_switch_mode"/>
+
+    <ImageView
+        android:id="@+id/iv_head_switch_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:src="@drawable/ic_switch_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_header_img" />
+
+    <ImageView
+        android:id="@+id/iv_home_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/bili_drawer_bg_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/nav_head_image_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

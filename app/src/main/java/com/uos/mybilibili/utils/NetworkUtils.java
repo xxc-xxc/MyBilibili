@@ -22,7 +22,6 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.tbruyelle.rxpermissions3.RxPermissions;
 import com.uos.mybilibili.service.NetworkService;
 
 import java.lang.reflect.Method;

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fb7299</color>
+    <color name="colorPrimary">#FB7299</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="black_alpha_60">#4f000000</color>
-    <color name="pink">#fb7299</color>
+    <color name="black_alpha_60">#4F000000</color>
+    <color name="nav_head_image_background">#F8668D</color>
+    <color name="nav_head_roung_text_background">#FB7BA0</color>
+    <color name="pink">#FB7299</color>
+    <color name="nav_head_round_background">#FDC7D6</color>
 </resources>
