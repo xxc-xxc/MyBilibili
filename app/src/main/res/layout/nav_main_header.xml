@@ -52,7 +52,7 @@
         android:background="@drawable/round_pink_white_bg"
         android:text="普通会员"
         android:textColor="@color/nav_head_roung_text_background"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toStartOf="@id/tv_user_name"
         app:layout_constraintTop_toBottomOf="@id/tv_user_name"/>
 
@@ -63,7 +63,7 @@
         android:layout_marginTop="@dimen/dp_8"
         android:text="硬币:10"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintStart_toStartOf="@id/tv_vip_state"
         app:layout_constraintTop_toBottomOf="@id/tv_vip_state"/>
 
@@ -74,7 +74,7 @@
         android:layout_marginStart="@dimen/dp_4"
         android:text="B币:10"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintTop_toTopOf="@id/tv_coins"
         app:layout_constraintStart_toEndOf="@id/tv_coins"/>
 

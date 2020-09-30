@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
@@ -19,6 +20,10 @@ import com.uos.mybilibili.utils.Event;
 import com.uos.mybilibili.utils.RxBus;
 import com.uos.mybilibili.utils.StatusBarUtil;
 import com.uos.mybilibili.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -33,6 +38,7 @@ public class MainActivity extends BaseActivity
     NavigationView navView;
 
     private long exitTime = 0L;
+    private List<Fragment> mFragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +101,11 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void initData() {
+        initFragment();
+    }
 
+    private void initFragment() {
+//        mFragments = Arrays.asList(HomeFragment.newInstance());
     }
 
     @Override
