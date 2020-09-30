@@ -1,9 +1,8 @@
-package com.uos.mybilibili.activity;
+package com.uos.mybilibili.module.activity.home;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -27,6 +26,11 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * Author: xxc email: 2331896806@qq.com
+ * Date: 2020/9/30 18:16
+ * Desc: 主界面
+ */
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -1,4 +1,4 @@
-package com.uos.mybilibili.activity;
+package com.uos.mybilibili.module.activity.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.uos.mybilibili.base.BaseActivity;
 import com.uos.mybilibili.bean.app.Splash;
 import com.uos.mybilibili.di.component.DaggerActivityComponent;
 import com.uos.mybilibili.di.module.ActivityModule;
+import com.uos.mybilibili.module.activity.home.MainActivity;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.mvp.presenter.SplashPresenter;
 import com.uos.mybilibili.network.lib.core.NetType;

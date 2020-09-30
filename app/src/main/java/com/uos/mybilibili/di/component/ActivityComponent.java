@@ -2,7 +2,7 @@ package com.uos.mybilibili.di.component;
 
 import android.app.Activity;
 
-import com.uos.mybilibili.activity.SplashActivity;
+import com.uos.mybilibili.module.activity.app.SplashActivity;
 import com.uos.mybilibili.di.module.ActivityModule;
 import com.uos.mybilibili.di.scope.ActivityScope;
 
