@@ -1,4 +1,4 @@
-package com.uos.mybilibili.bean;
+package com.uos.mybilibili.bean.app;
 
 import java.util.List;
 

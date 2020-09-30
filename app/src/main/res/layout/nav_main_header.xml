@@ -10,7 +10,7 @@
         android:id="@+id/iv_header_img"
         android:layout_width="@dimen/dp_74"
         android:layout_height="@dimen/dp_74"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_24"
         android:layout_marginStart="@dimen/dp_24"
         android:src="@drawable/ic_user_header"
         app:layout_constraintTop_toTopOf="parent"

@@ -1,6 +1,6 @@
 package com.uos.mybilibili.network.api;
 
-import com.uos.mybilibili.bean.Splash;
+import com.uos.mybilibili.bean.app.Splash;
 
 import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.http.GET;

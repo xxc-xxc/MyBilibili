@@ -1,7 +1,7 @@
 package com.uos.mybilibili.mvp.contract;
 
 import com.uos.mybilibili.base.BaseContract;
-import com.uos.mybilibili.bean.Splash;
+import com.uos.mybilibili.bean.app.Splash;
 
 import io.reactivex.rxjava3.core.Flowable;
 

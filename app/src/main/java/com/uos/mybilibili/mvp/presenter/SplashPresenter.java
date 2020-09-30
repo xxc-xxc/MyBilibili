@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.uos.mybilibili.base.BaseSubscriber;
 import com.uos.mybilibili.base.RxPresenter;
-import com.uos.mybilibili.bean.Splash;
+import com.uos.mybilibili.bean.app.Splash;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.mvp.model.SplashModel;
 import com.uos.mybilibili.utils.RxUtils;

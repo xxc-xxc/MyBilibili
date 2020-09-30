@@ -1,9 +1,8 @@
 package com.uos.mybilibili.mvp.model;
 
-import com.uos.mybilibili.bean.Splash;
+import com.uos.mybilibili.bean.app.Splash;
 import com.uos.mybilibili.mvp.contract.SplashContract;
 import com.uos.mybilibili.network.api.AppService;
-import com.uos.mybilibili.network.helper.RetrofitHelper;
 
 import javax.inject.Inject;
 

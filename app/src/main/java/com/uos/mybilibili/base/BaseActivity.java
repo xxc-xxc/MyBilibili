@@ -28,9 +28,12 @@ import com.uos.mybilibili.network.broadcast.NetBroadcastReceiver;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
 import com.uos.mybilibili.network.lib.NetworkListener;
 import com.uos.mybilibili.utils.ActivitiesManager;
+import com.uos.mybilibili.utils.Event;
+import com.uos.mybilibili.utils.RxBus;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Create By xxc
@@ -51,6 +54,7 @@ public abstract class BaseActivity extends RxAppCompatActivity
     //是否允许旋转屏幕
     private boolean isAllowScreenRotate;
     private Unbinder mUnbinder;
+    private Disposable mDisposable;
     //    private NetBroadcastReceiver mNetBroadcastReceiver;
 
     @Override
@@ -95,6 +99,18 @@ public abstract class BaseActivity extends RxAppCompatActivity
 //        registerReceiver(mNetBroadcastReceiver, intentFilter);
 //        NetworkListener.getInstance().registerObserver(this);
         ((MyApplication)getApplication()).setNetworkChangeListener(this);
+        initExit();
+    }
+
+    /**
+     * 退出应用
+     */
+    private void initExit() {
+        mDisposable = RxBus.INSTANCE.toDefaultFlowable(Event.ExitEvent.class, exitEvent -> {
+            if (exitEvent.exit == -1) {
+                finish();
+            }
+        });
     }
 
     /**
@@ -194,6 +210,9 @@ public abstract class BaseActivity extends RxAppCompatActivity
 //        unregisterReceiver(mNetBroadcastReceiver);
 //        NetworkListener.getInstance().unRegisterObserver(this);
         ((MyApplication)getApplication()).setNetworkChangeListener(this);
+        if (!mDisposable.isDisposed()) {
+            mDisposable.dispose();
+        }
     }
 
     @Override
