@@ -19,11 +19,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 import com.uos.mybilibili.MyApplication;
+import com.uos.mybilibili.R;
 import com.uos.mybilibili.network.broadcast.NetBroadcastReceiver;
 import com.uos.mybilibili.network.broadcast.NetworkStateReceiver;
 import com.uos.mybilibili.network.lib.NetworkListener;
@@ -47,6 +49,8 @@ public abstract class BaseActivity extends RxAppCompatActivity
     public static NetBroadcastReceiver.NetChangeListener netEvent;// 网络状态改变监听事件
     private static Toast sToast;
     private Context mContext;
+    protected Toolbar mToolbar;//Toolbar
+    protected boolean mBack = true;
     //是否显示标题栏
     private boolean isShowTitle;
     // 是否显示ActionBar
@@ -87,6 +91,14 @@ public abstract class BaseActivity extends RxAppCompatActivity
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
+        mToolbar = findViewById(R.id.toolbar);
+        if (mToolbar != null) {
+            //初始化Toolbar
+            initToolbar();
+            //让组件支持Toolbar
+            setSupportActionBar(mToolbar);
+            if (mBack) mToolbar.setNavigationOnClickListener(v -> finish());
+        }
 
         // 初始化控件
         initView();
@@ -100,6 +112,13 @@ public abstract class BaseActivity extends RxAppCompatActivity
 //        NetworkListener.getInstance().registerObserver(this);
         ((MyApplication)getApplication()).setNetworkChangeListener(this);
         initExit();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    protected void initToolbar() {
+        if (mBack) mToolbar.setNavigationIcon(R.drawable.ic_clip_back_white);
     }
 
     /**

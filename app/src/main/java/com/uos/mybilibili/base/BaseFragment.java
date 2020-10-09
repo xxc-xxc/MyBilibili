@@ -36,7 +36,7 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends RxFragment
         implements BaseContract.BaseView {
 
-    private View mView;
+    protected View mView;
     private Unbinder mUnbinder;
     protected LayoutInflater inflater;
     protected Activity mActivity;

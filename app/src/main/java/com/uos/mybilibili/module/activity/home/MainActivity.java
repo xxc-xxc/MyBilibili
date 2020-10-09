@@ -1,5 +1,7 @@
 package com.uos.mybilibili.module.activity.home;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -8,12 +10,12 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.uos.mybilibili.R;
 import com.uos.mybilibili.base.BaseActivity;
+import com.uos.mybilibili.module.fragment.home.HomeFragment;
 import com.uos.mybilibili.utils.AppUtils;
 import com.uos.mybilibili.utils.Event;
 import com.uos.mybilibili.utils.RxBus;
@@ -42,6 +44,7 @@ public class MainActivity extends BaseActivity
     NavigationView navView;
 
     private long exitTime = 0L;
+    private int mCurrentPos = -1;
     private List<Fragment> mFragments = new ArrayList<>();
 
     @Override
@@ -106,10 +109,24 @@ public class MainActivity extends BaseActivity
     @Override
     protected void initData() {
         initFragment();
+        switchFragmentIndex(0);//初始化位置
+    }
+
+    private void switchFragmentIndex(int pos) {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        if (mCurrentPos != -1)
+            transaction.hide(mFragments.get(mCurrentPos));
+        if (!mFragments.get(pos).isAdded()) {
+            transaction.add(R.id.fl_main_content, mFragments.get(pos));
+        }
+        transaction.show(mFragments.get(pos)).commit();
+        mCurrentPos = pos;
+
     }
 
     private void initFragment() {
-//        mFragments = Arrays.asList(HomeFragment.newInstance());
+        mFragments = Arrays.asList(HomeFragment.newInstance());
     }
 
     @Override
