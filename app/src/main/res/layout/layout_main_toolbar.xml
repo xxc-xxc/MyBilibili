@@ -52,7 +52,7 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <androidx.slidingpanelayout.widget.SlidingPaneLayout
+            <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/home_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_48"

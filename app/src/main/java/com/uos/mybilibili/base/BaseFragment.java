@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
@@ -18,7 +17,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.trello.rxlifecycle4.components.RxFragment;
 import com.uos.mybilibili.MyApplication;
-import com.uos.mybilibili.R;
 import com.uos.mybilibili.di.component.DaggerFragmentComponent;
 import com.uos.mybilibili.di.component.FragmentComponent;
 import com.uos.mybilibili.di.module.FragmentModule;
@@ -33,7 +31,7 @@ import butterknife.Unbinder;
  * Date: 2020/9/30 16:45
  * Desc:
  */
-public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends RxFragment
+public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends Fragment
         implements BaseContract.BaseView {
 
     protected View mView;

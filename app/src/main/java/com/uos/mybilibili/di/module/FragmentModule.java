@@ -1,7 +1,8 @@
 package com.uos.mybilibili.di.module;
 
 import android.app.Activity;
-import android.app.Fragment;
+
+import androidx.fragment.app.Fragment;
 
 import com.uos.mybilibili.di.scope.FragmentScope;
 

@@ -1,7 +1,5 @@
 package com.uos.mybilibili.module.activity.home;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -10,6 +8,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
@@ -113,8 +113,8 @@ public class MainActivity extends BaseActivity
     }
 
     private void switchFragmentIndex(int pos) {
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         if (mCurrentPos != -1)
             transaction.hide(mFragments.get(mCurrentPos));
         if (!mFragments.get(pos).isAdded()) {

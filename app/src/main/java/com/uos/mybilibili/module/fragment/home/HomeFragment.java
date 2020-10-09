@@ -8,11 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
-import androidx.slidingpanelayout.widget.SlidingPaneLayout;
-
+import com.flyco.tablayout.SlidingTabLayout;
 import com.uos.mybilibili.R;
+import com.uos.mybilibili.module.adapter.MainAdapter;
 import com.uos.mybilibili.utils.Event;
 import com.uos.mybilibili.utils.RxBus;
 import com.uos.mybilibili.widget.NoScrollViewPager;
@@ -29,7 +27,7 @@ import butterknife.Unbinder;
  */
 public class HomeFragment extends BaseHomeFragment {
     @BindView(R.id.home_tab_layout)
-    SlidingPaneLayout homeTabLayout;
+    SlidingTabLayout homeTabLayout;
     @BindView(R.id.home_view_pager)
     NoScrollViewPager homeViewPager;
 //    @BindView(R.id.search_view)
@@ -43,6 +41,20 @@ public class HomeFragment extends BaseHomeFragment {
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        initViewPager();
+    }
+
+    private void initViewPager() {
+        MainAdapter adapter = new MainAdapter(getChildFragmentManager());
+        homeViewPager.setOffscreenPageLimit(5);
+        homeViewPager.setAdapter(adapter);
+        homeTabLayout.setViewPager(homeViewPager);
+        homeViewPager.setCurrentItem(1);
     }
 
     @Override
