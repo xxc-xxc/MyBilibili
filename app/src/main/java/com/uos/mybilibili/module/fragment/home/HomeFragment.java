@@ -13,6 +13,8 @@ import androidx.core.view.MenuItemCompat;
 import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 import com.uos.mybilibili.R;
+import com.uos.mybilibili.utils.Event;
+import com.uos.mybilibili.utils.RxBus;
 import com.uos.mybilibili.widget.NoScrollViewPager;
 
 import butterknife.BindView;
@@ -67,7 +69,21 @@ public class HomeFragment extends BaseHomeFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_navigation:
+                Event.StartNavigationEvent event = new Event.StartNavigationEvent();
+                event.start = true;
+                RxBus.INSTANCE.post(event);
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.menu_game:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

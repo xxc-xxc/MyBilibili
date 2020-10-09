@@ -45,11 +45,11 @@ public class Event {
 
     }
 
-    public static class UpDetailSubmitedVideoEvent {
-        public List<UpDetail.DataBean.ArchiveBean.ItemBean> archivList;
+    public static class UpDetailSubmittedVideoEvent {
+        public List<UpDetail.DataBean.ArchiveBean.ItemBean> archiveList;
     }
 
-    public static class UpDetailFavourteEvent {
+    public static class UpDetailFavouriteEvent {
         public List<UpDetail.DataBean.FavouriteBean.ItemBeanX> favouriteList;
     }
 
