@@ -5,16 +5,21 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.annimon.stream.Stream;
 import com.uos.mybilibili.R;
 import com.uos.mybilibili.base.BaseRefreshFragment;
 import com.uos.mybilibili.bean.recommend.MulRecommend;
 import com.uos.mybilibili.bean.recommend.Recommend;
+import com.uos.mybilibili.module.adapter.home.RecommendAdapter;
 import com.uos.mybilibili.mvp.contract.RecommendContract;
 import com.uos.mybilibili.mvp.presenter.RecommendPresenter;
+import com.uos.mybilibili.utils.AppUtils;
+import com.uos.mybilibili.utils.EmptyUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
+import java8.util.stream.StreamSupport;
 
 /**
  * @author xxc
@@ -27,7 +32,7 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
     @BindView(R.id.iv_rank)
     ImageView mIvRank;
 
-//    private RecommendAdapter mAdapter;
+    private RecommendAdapter mAdapter;
 
     public static RecommendFragment newInstance() {
         return new RecommendFragment();
@@ -59,24 +64,37 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
 
     @Override
     protected void initRecyclerView() {
-//        mAdapter = new RecommendAdapter(mList);
-//        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-//        mAdapter.setSpanSizeLookup((gridLayoutManager, i) -> mList.get(i).spanSize);
-//        mRecycler.setLayoutManager(mLayoutManager);
-//        mRecycler.setAdapter(mAdapter);
-//        //添加分割条
-//        VerticalDividerItemDecoration build = new VerticalDividerItemDecoration.Builder(getActivity())
-//                .color(AppUtils.getColor(R.color.transparent))
-//                // .color(AppUtils.getColor(R.color.colorPrimary))
-//                .sizeResId(R.dimen.dp10)
-//                .showLastDivider()
-//                .build();
-//        mRecycler.addItemDecoration(build);
+        mAdapter = new RecommendAdapter(mList);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mAdapter.setSpanSizeLookup((gridLayoutManager, i) -> mList.get(i).spanSize);
+        mRecycler.setLayoutManager(mLayoutManager);
+        mRecycler.setAdapter(mAdapter);
+        //添加分割条
+        VerticalDividerItemDecoration build = new VerticalDividerItemDecoration.Builder(getActivity())
+                .color(AppUtils.getColor(R.color.transparent))
+                // .color(AppUtils.getColor(R.color.colorPrimary))
+                .sizeResId(R.dimen.dp_10)
+                .showLastDivider()
+                .build();
+        mRecycler.addItemDecoration(build);
     }
 
+    /**
+     * 成功请求到数据，刷新页面
+     * @param recommendList
+     */
     @Override
-    public void showRecommend(List<Recommend> recommend) {
-//        Stream.of(recommend)
+    public void showRecommend(List<Recommend> recommendList) {
+        // 使用StreamSupport支持Java8的语法，否则要将minSdkVersion升到24
+        StreamSupport.stream(recommendList)
+                .forEach(recommend -> {
+                    if (EmptyUtils.isNotEmpty(recommend.banner_item)) {
+                        mList.add(new MulRecommend(MulRecommend.TYPE_HEADER, MulRecommend.HEADER_SPAN_SIZE, recommend.banner_item));
+                    } else {
+                        mList.add(new MulRecommend(MulRecommend.TYPE_ITEM, MulRecommend.ITEM_SPAN_SIZE, recommend));
+                    }
+                });
+//        Stream.of(recommendList)
 //                .forEach(recommendBean -> {
 //                    if (EmptyUtils.isNotEmpty(recommendBean.banner_item)) {
 //                        mList.add(new MulRecommend(MulRecommend.TYPE_HEADER, MulRecommend.HEADER_SPAN_SIZE, recommendBean.banner_item));
@@ -84,12 +102,12 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
 //                        mList.add(new MulRecommend(MulRecommend.TYPE_ITEM, MulRecommend.ITEM_SPAN_SIZE, recommendBean));
 //                    }
 //                });
-//        finishTask();
+        finishTask();
     }
 
     @Override
     protected void finishTask() {
-//        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
 }

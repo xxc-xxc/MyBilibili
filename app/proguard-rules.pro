@@ -35,3 +35,8 @@
 
 # for DexGuard only
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+
+# start streamsupport
+-keep class java8.** { *; }
+-dontwarn java8.**
+# end streamsupport

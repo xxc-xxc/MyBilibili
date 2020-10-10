@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.uos.mybilibili.R;
-import com.uos.mybilibili.module.adapter.MainAdapter;
+import com.uos.mybilibili.module.adapter.home.MainAdapter;
 import com.uos.mybilibili.utils.Event;
 import com.uos.mybilibili.utils.RxBus;
 import com.uos.mybilibili.widget.NoScrollViewPager;
