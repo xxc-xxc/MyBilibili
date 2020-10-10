@@ -36,7 +36,7 @@ public class MainAdapter extends FragmentPagerAdapter {
                 case 0:
                     //直播
 //                    mFragment[position] = LiveFragment.newInstance();
-                    break;
+//                    break;
                 case 1:
                     //推荐
                     mFragment[position] = RecommendFragment.newInstance();

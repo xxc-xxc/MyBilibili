@@ -318,6 +318,10 @@ public abstract class BaseFragment<T extends BaseContract.BasePresenter> extends
         }
     }
 
+    protected void finishTask() {
+
+    }
+
     /**
      * 隐藏View
      *

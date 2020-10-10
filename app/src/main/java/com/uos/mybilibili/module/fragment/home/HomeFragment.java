@@ -54,7 +54,7 @@ public class HomeFragment extends BaseHomeFragment {
         homeViewPager.setOffscreenPageLimit(5);
         homeViewPager.setAdapter(adapter);
         homeTabLayout.setViewPager(homeViewPager);
-        homeViewPager.setCurrentItem(1);
+        homeViewPager.setCurrentItem(0);
     }
 
     @Override

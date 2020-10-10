@@ -3,7 +3,16 @@ package com.uos.mybilibili.module.fragment.home;
 import android.content.Intent;
 import android.widget.ImageView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.uos.mybilibili.R;
+import com.uos.mybilibili.base.BaseRefreshFragment;
+import com.uos.mybilibili.bean.recommend.MulRecommend;
+import com.uos.mybilibili.bean.recommend.Recommend;
+import com.uos.mybilibili.mvp.contract.RecommendContract;
+import com.uos.mybilibili.mvp.presenter.RecommendPresenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -18,7 +27,7 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
     @BindView(R.id.iv_rank)
     ImageView mIvRank;
 
-    private RecommendAdapter mAdapter;
+//    private RecommendAdapter mAdapter;
 
     public static RecommendFragment newInstance() {
         return new RecommendFragment();
@@ -34,50 +43,53 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
         getFragmentComponent().inject(this);
     }
 
+    /**
+     * 请求推荐位数据
+     */
     @Override
     protected void lazyLoadData() {
-        mPresenter.getRecommendData();
+        mPresenter.getRecommend();
     }
 
     @Override
-    public void initWidget() {
-        super.initWidget();
-        mIvRank.setOnClickListener(view-> startActivity(new Intent(getActivity(), AllStationRankActivity.class)));
+    public void initView() {
+        super.initView();
+//        mIvRank.setOnClickListener(view-> startActivity(new Intent(getActivity(), AllStationRankActivity.class)));
     }
 
     @Override
     protected void initRecyclerView() {
-        mAdapter = new RecommendAdapter(mList);
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-        mAdapter.setSpanSizeLookup((gridLayoutManager, i) -> mList.get(i).spanSize);
-        mRecycler.setLayoutManager(mLayoutManager);
-        mRecycler.setAdapter(mAdapter);
-        //添加分割条
-        VerticalDividerItemDecoration build = new VerticalDividerItemDecoration.Builder(getActivity())
-                .color(AppUtils.getColor(R.color.transparent))
-                // .color(AppUtils.getColor(R.color.colorPrimary))
-                .sizeResId(R.dimen.dp10)
-                .showLastDivider()
-                .build();
-        mRecycler.addItemDecoration(build);
+//        mAdapter = new RecommendAdapter(mList);
+//        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+//        mAdapter.setSpanSizeLookup((gridLayoutManager, i) -> mList.get(i).spanSize);
+//        mRecycler.setLayoutManager(mLayoutManager);
+//        mRecycler.setAdapter(mAdapter);
+//        //添加分割条
+//        VerticalDividerItemDecoration build = new VerticalDividerItemDecoration.Builder(getActivity())
+//                .color(AppUtils.getColor(R.color.transparent))
+//                // .color(AppUtils.getColor(R.color.colorPrimary))
+//                .sizeResId(R.dimen.dp10)
+//                .showLastDivider()
+//                .build();
+//        mRecycler.addItemDecoration(build);
     }
 
     @Override
     public void showRecommend(List<Recommend> recommend) {
-        Stream.of(recommend)
-                .forEach(recommendBean -> {
-                    if (EmptyUtils.isNotEmpty(recommendBean.banner_item)) {
-                        mList.add(new MulRecommend(MulRecommend.TYPR_HEADER, MulRecommend.HEADER_SPAN_SIZE, recommendBean.banner_item));
-                    } else {
-                        mList.add(new MulRecommend(MulRecommend.TYPE_ITEM, MulRecommend.ITEM_SPAN_SIZE, recommendBean));
-                    }
-                });
-        finishTask();
+//        Stream.of(recommend)
+//                .forEach(recommendBean -> {
+//                    if (EmptyUtils.isNotEmpty(recommendBean.banner_item)) {
+//                        mList.add(new MulRecommend(MulRecommend.TYPE_HEADER, MulRecommend.HEADER_SPAN_SIZE, recommendBean.banner_item));
+//                    } else {
+//                        mList.add(new MulRecommend(MulRecommend.TYPE_ITEM, MulRecommend.ITEM_SPAN_SIZE, recommendBean));
+//                    }
+//                });
+//        finishTask();
     }
 
     @Override
     protected void finishTask() {
-        mAdapter.notifyDataSetChanged();
+//        mAdapter.notifyDataSetChanged();
     }
 
 }

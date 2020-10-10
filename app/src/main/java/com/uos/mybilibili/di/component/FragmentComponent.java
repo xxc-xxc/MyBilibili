@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.uos.mybilibili.di.module.FragmentModule;
 import com.uos.mybilibili.di.scope.FragmentScope;
+import com.uos.mybilibili.module.fragment.home.RecommendFragment;
 
 import dagger.Component;
 
@@ -17,5 +18,7 @@ import dagger.Component;
 public interface FragmentComponent {
 
     Activity getActivity();
+
+    void inject(RecommendFragment recommendFragment);
 
 }

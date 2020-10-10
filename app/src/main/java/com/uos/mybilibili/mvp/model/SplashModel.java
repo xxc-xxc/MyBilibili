@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Flowable;
 /**
  * Create By xxc
  * Date: 2020/9/27 17:00
- * Desc:
+ * Desc: 调用api进行网络请求，获取splash数据
  */
 public class SplashModel implements SplashContract.Model {
 
