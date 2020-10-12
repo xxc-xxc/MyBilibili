@@ -5,6 +5,7 @@ import android.content.Context;
 import com.uos.mybilibili.di.module.ApiModule;
 import com.uos.mybilibili.di.module.AppModule;
 import com.uos.mybilibili.network.api.AppService;
+import com.uos.mybilibili.network.api.LiveService;
 
 import javax.inject.Singleton;
 
@@ -21,4 +22,6 @@ public interface AppComponent {
     Context getContext();
 
     AppService getAppService();
+
+    LiveService getLiveService();
 }

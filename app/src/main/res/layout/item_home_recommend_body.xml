@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_120"
             android:scaleType="center"
-            android:background="@mipmap/ic_launcher"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

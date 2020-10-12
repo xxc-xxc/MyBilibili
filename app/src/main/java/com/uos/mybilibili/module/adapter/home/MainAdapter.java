@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.uos.mybilibili.R;
+import com.uos.mybilibili.module.fragment.home.LiveFragment;
 import com.uos.mybilibili.module.fragment.home.RecommendFragment;
 import com.uos.mybilibili.utils.AppUtils;
 
@@ -35,8 +36,8 @@ public class MainAdapter extends FragmentPagerAdapter {
             switch (position) {
                 case 0:
                     //直播
-//                    mFragment[position] = LiveFragment.newInstance();
-//                    break;
+                    mFragment[position] = LiveFragment.newInstance();
+                    break;
                 case 1:
                     //推荐
                     mFragment[position] = RecommendFragment.newInstance();

@@ -29,7 +29,8 @@ import io.reactivex.rxjava3.core.Flowable;
  * Date: 2020/10/10 10:19
  * Desc:
  */
-public class RecommendPresenter extends RxPresenter<RecommendContract.View> implements RecommendContract.Presenter<RecommendContract.View> {
+public class RecommendPresenter extends RxPresenter<RecommendContract.View>
+        implements RecommendContract.Presenter<RecommendContract.View> {
 
     private Context mContext;
 

@@ -1,7 +1,9 @@
 package com.uos.mybilibili.di.module;
 
 import com.uos.mybilibili.di.qualifier.AppUrl;
+import com.uos.mybilibili.di.qualifier.LiveUrl;
 import com.uos.mybilibili.network.api.AppService;
+import com.uos.mybilibili.network.api.LiveService;
 import com.uos.mybilibili.network.helper.OkHttpHelper;
 import com.uos.mybilibili.network.helper.RetrofitHelper;
 import com.uos.mybilibili.utils.ApiConstants;
@@ -83,6 +85,19 @@ public class ApiModule {
     @AppUrl
     public Retrofit provideAppRetrofit(Retrofit.Builder builder, OkHttpClient client) {
         return createRetrofit(builder, client, ApiConstants.APP_BASE_URL);
+    }
+
+    @Singleton
+    @Provides
+    public LiveService provideLiveService(@LiveUrl Retrofit retrofit) {
+        return retrofit.create(LiveService.class);
+    }
+
+    @Singleton
+    @Provides
+    @LiveUrl
+    public Retrofit provideLiveRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, ApiConstants.LIVE_BASE_URL);
     }
 
 }

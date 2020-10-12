@@ -62,6 +62,7 @@ public class RecommendFragment extends BaseRefreshFragment<RecommendPresenter, M
     @Override
     public void initView() {
         super.initView();
+        // 全站排行
 //        mIvRank.setOnClickListener(view-> startActivity(new Intent(getActivity(), AllStationRankActivity.class)));
     }
 
