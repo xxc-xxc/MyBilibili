@@ -44,41 +44,41 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View>
 
     @Override
     public void getRecommend() {
-//        BaseListSubscriber<Recommend> subscriber = mModel.getRecommend()
-//                .compose(RxUtils.rxSchedulerHelper())
-//                .subscribeWith(new BaseListSubscriber<Recommend>(mView) {
-//                    @Override
-//                    public void onSuccess(List<Recommend> recommends) {
-//                        // 成功回调
-//                        mView.showRecommend(recommends);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int code, String message) {
-//                        // 失败回调
-//                        super.onFailure(code, message);
-//                    }
-//                });
-//        addSubscribe(subscriber);
-
-        BaseSubscriber<List<Recommend>> subscriber = Flowable.just(JsonUtils.readJson("recommend.json"))
-                .map(string -> {
-                    Gson gson = new Gson();
-                    JsonObject object = new JsonParser().parse(string).getAsJsonObject();
-                    JsonArray array = object.getAsJsonArray("data");
-                    List<Recommend> recommends = new ArrayList<>();
-                    for (JsonElement jsonElement : array) {
-                        recommends.add(gson.fromJson(jsonElement, Recommend.class));
-                    }
-                    return recommends;
-                })
+        BaseListSubscriber<Recommend> subscriber = mModel.getRecommend()
                 .compose(RxUtils.rxSchedulerHelper())
-                .subscribeWith(new BaseSubscriber<List<Recommend>>(mView) {
+                .subscribeWith(new BaseListSubscriber<Recommend>(mView) {
                     @Override
                     public void onSuccess(List<Recommend> recommends) {
+                        // 成功回调
                         mView.showRecommend(recommends);
+                    }
+
+                    @Override
+                    public void onFailure(int code, String message) {
+                        // 失败回调
+                        super.onFailure(code, message);
                     }
                 });
         addSubscribe(subscriber);
+
+//        BaseSubscriber<List<Recommend>> subscriber = Flowable.just(JsonUtils.readJson("recommend.json"))
+//                .map(string -> {
+//                    Gson gson = new Gson();
+//                    JsonObject object = new JsonParser().parse(string).getAsJsonObject();
+//                    JsonArray array = object.getAsJsonArray("data");
+//                    List<Recommend> recommends = new ArrayList<>();
+//                    for (JsonElement jsonElement : array) {
+//                        recommends.add(gson.fromJson(jsonElement, Recommend.class));
+//                    }
+//                    return recommends;
+//                })
+//                .compose(RxUtils.rxSchedulerHelper())
+//                .subscribeWith(new BaseSubscriber<List<Recommend>>(mView) {
+//                    @Override
+//                    public void onSuccess(List<Recommend> recommends) {
+//                        mView.showRecommend(recommends);
+//                    }
+//                });
+//        addSubscribe(subscriber);
     }
 }

@@ -1,13 +1,10 @@
 package com.uos.mybilibili.module.fragment.home;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.annimon.stream.Stream;
-import com.chad.library.adapter.base.listener.GridSpanSizeLookup;
 import com.uos.mybilibili.R;
 import com.uos.mybilibili.base.BaseRefreshFragment;
 import com.uos.mybilibili.bean.recommend.MulRecommend;

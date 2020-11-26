@@ -62,10 +62,8 @@ public abstract class BaseRefreshFragment<T extends BaseContract.BasePresenter, 
      */
     @Override
     public void finishCreateView(Bundle state) {
-        if (mActivity != null) {
-            mRefresh = mActivity.findViewById(R.id.refresh);
-            mRecycler = mActivity.findViewById(R.id.recycler);
-        }
+        mRefresh = mActivity.findViewById(R.id.refresh);
+        mRecycler = mActivity.findViewById(R.id.recycler);
         isPrepared = true;
         // 加载数据
         lazyLoad();

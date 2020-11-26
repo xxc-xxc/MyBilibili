@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.jakewharton.rxbinding4.view.RxView;
 import com.uos.mybilibili.MyApplication;
 import com.uos.mybilibili.R;
